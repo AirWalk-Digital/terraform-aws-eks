@@ -32,7 +32,7 @@ Next we will use the same `output` subcommand to output the `aws-auth` configmap
 terraform output config-map-aws-auth > aws-auth.yaml
 
 ```
-#Connecting to your EKS Cluster
+# Connecting to your EKS Cluster
 Now that we have all the files in-place we can then `export` out `kubeconfig` path and try using `kubectl`.
 ```bash
 export KUBECONFIG=kubeconfig
@@ -64,6 +64,6 @@ ip-10-0-1-154.us-west-2.compute.internal   Ready    <none>   106s   v1.13.7-eks-
 ...
 ```
 
-#Launch a Guest Book Application:
+# Launch a Guest Book Application:
 For more information about setting up the guest book example, see https://github.com/kubernetes/examples/blob/master/guestbook-go/README.md in the Kubernetes documentation.
 Or Follow the steps from here.
