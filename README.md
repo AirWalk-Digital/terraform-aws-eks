@@ -16,23 +16,23 @@ To install `kubectl` the easiest way again is to use `homebrew` on macOS.
 brew install kubernetes-cli
 
 ```
-For authentication with an Amazon Elastic Container Service for Kubernetes you must use Amazon Identity and Access Management. To do so you must use an open source tool called the AWS IAM Authenticator.
-To install this, you can either use the vendored and compiled versions from the Github releases page or you can use `go` to install from source.
+To install AWS IAM authenticator
+```bash
 go get -u github.com/kubernetes-sigs/aws-iam-authenticator
 
-Now that we have this installed we should make sure it is in our path, to check this we can run `aws-iam-authenticator` this should return the help documentation for the binary.
+```
+
 Before we can use the cluster we need to output both the `kubeconfig` and the `aws-auth` configmap which will allow our nodes to connect to the cluster.
 ```bash
 terraform output kubeconfig > kubeconfig
 
 ```
-
-This will output the `kubeconfig` file to your local directory, make sure you keep track of where this file lives, we'll need it for the deployment of services.
 Next we will use the same `output` subcommand to output the `aws-auth` configmap which will give the worker nodes the ability to connect to the cluster.
+```bash
 terraform output config-map-aws-auth > aws-auth.yaml
-With this file and the `kubeconfig` file out you can then configure `kubectl` to use the `kubeconfig` file and apply the `aws-auth` configmap.
 
-##Connecting to your EKS Cluster
+```
+#Connecting to your EKS Cluster
 Now that we have all the files in-place we can then `export` out `kubeconfig` path and try using `kubectl`.
 ```bash
 export KUBECONFIG=kubeconfig
